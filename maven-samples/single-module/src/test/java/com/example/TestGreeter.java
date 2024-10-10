@@ -29,10 +29,8 @@ public class TestGreeter {
   
 
   @Test
-  public void greetShouldIncludeGreetingPhrase() {
-    String someone = "World";
-
-    assertThat(greeter.greet(someone).length(), is(greaterThan(someone.length())));
+  public void Internationally_Failed() {
+    assertTrue(false);
   }
 
     @Test
