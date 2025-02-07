@@ -1,0 +1,76 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define any environment variables here
+        PROJECT_NAME = "MyProject"
+        BUILD_DIR = "build"
+    }
+
+    stages {
+        // Stage to pull the latest code from the Git repository
+        stage('Checkout') {
+            steps {
+                // Checkout code from the repository
+                git branch: 'main', url: 'https://github.com/sspradhan8055/Jenkins_Upgradev3.git'
+            }
+        }
+
+        // Stage for building the project
+        stage('Build') {
+            steps {
+                script {
+                    // Run build command (e.g., for a Maven project)
+                    echo "Building project..."
+                    sh 'mvn clean install'
+                }
+            }
+        }
+
+        // Stage for running tests
+        stage('Test') {
+            steps {
+                script {
+                    // Run tests after build (for a Java Maven project)
+                    echo "Running tests..."
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        // Stage to deploy the project
+        stage('Deploy') {
+            steps {
+                script {
+                    // Deploy to your server, for example, using scp or any deployment tool
+                    echo "Deploying project..."
+                    // Example: Deploy to a remote server using SCP
+                    // sh 'scp target/my-app.jar user@server:/path/to/deploy'
+                }
+            }
+        }
+    }
+
+    post {
+        // Actions that will run after the pipeline finishes
+        always {
+            echo "Pipeline finished"
+        }
+
+        success {
+            echo "Pipeline succeeded!"
+        }
+
+        failure {
+            echo "Pipeline failed."
+        }
+
+        unstable {
+            echo "Pipeline is unstable."
+        }
+
+        changed {
+            echo "Pipeline result has changed."
+        }
+    }
+}
