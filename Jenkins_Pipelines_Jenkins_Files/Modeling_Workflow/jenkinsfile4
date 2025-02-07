@@ -9,12 +9,12 @@ pipeline {
 
     stages {
         // Stage to pull the latest code from the Git repository
-        stage('Checkout') {
-            steps {
+        //stage('Checkout') {
+           // steps {
                 // Checkout code from the repository
-                git branch: 'main', url: 'https://github.com/sspradhan8055/Jenkins_Upgradev3.git'
-            }
-        }
+                //git branch: 'main', url: 'https://github.com/sspradhan8055/Jenkins_Upgradev3.git'
+           // }
+       // }
 
         // Stage for building the project
         stage('Build') {
